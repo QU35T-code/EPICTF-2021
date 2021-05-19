@@ -1,0 +1,11 @@
+{
+    "name": "ctf-api",
+    "version": "1.0.0",
+    "description": "API for EPICTF 2021",
+    "main": "app.js",
+    "author": "QU35T",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

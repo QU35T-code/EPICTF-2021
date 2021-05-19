@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  pokestore:
+    build: ./app
+    ports:
+      - "9329:9329"
+    links:
+      - db
+    restart: always
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'pokestore'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'ctf'
+      MYSQL_TCP_PORT: 3311
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 's3cr3tpa55w0rdacc355databa53'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 's3cr3tpa55w0rdacc355databa53'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3311:3311'
+      # Where our data will be persisted
+    expose:
+      - '3311'
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
